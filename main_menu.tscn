@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://dslrtbrjys0d8"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_iam32"]
+[ext_resource type="PackedScene" uid="uid://dbab3v0q0eaul" path="res://parallax_background.tscn" id="2_0ehyr"]
+[ext_resource type="StyleBox" uid="uid://cvw8hpesyohwa" path="res://Assets/button.tres" id="3_lunlf"]
+[ext_resource type="PackedScene" uid="uid://bi3ncbtudov7c" path="res://fade_transition.tscn" id="4_canfu"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_iam32")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_0ehyr")]
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 1127.0
+offset_bottom = 623.0
+mouse_filter = 2
+
+[node name="Quit" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 451.0
+offset_top = 275.0
+offset_right = 651.0
+offset_bottom = 350.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("3_lunlf")
+theme_override_styles/hover = ExtResource("3_lunlf")
+theme_override_styles/pressed = ExtResource("3_lunlf")
+theme_override_styles/disabled = ExtResource("3_lunlf")
+theme_override_styles/focus = ExtResource("3_lunlf")
+text = "Quit"
+
+[node name="Play" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 451.0
+offset_top = 175.0
+offset_right = 651.0
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("3_lunlf")
+theme_override_styles/hover = ExtResource("3_lunlf")
+theme_override_styles/pressed = ExtResource("3_lunlf")
+theme_override_styles/disabled = ExtResource("3_lunlf")
+theme_override_styles/focus = ExtResource("3_lunlf")
+text = "Play"
+
+[node name="FadeTransition" parent="." instance=ExtResource("4_canfu")]
+
+[connection signal="pressed" from="Buttons/Quit" to="." method="_quit"]
+[connection signal="pressed" from="Buttons/Play" to="." method="_play"]

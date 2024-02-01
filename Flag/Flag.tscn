@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://b7rpygcfilc32"]
+
+[ext_resource type="Script" path="res://Flag/Flag.gd" id="1_pykbo"]
+[ext_resource type="Texture2D" uid="uid://c1rw86krnx6sn" path="res://Assets/Flag1.png" id="1_qq3xm"]
+[ext_resource type="Texture2D" uid="uid://6vrgvtmivd0v" path="res://Assets/Flag2.png" id="2_d2cfy"]
+[ext_resource type="Texture2D" uid="uid://dloy42nbb7ffg" path="res://Assets/Flag3.png" id="3_p0ult"]
+[ext_resource type="Texture2D" uid="uid://dobffni77enoq" path="res://Assets/Flag4.png" id="4_4wq71"]
+[ext_resource type="Texture2D" uid="uid://kwrpjq121ae2" path="res://Assets/Flag5.png" id="5_43571"]
+[ext_resource type="Texture2D" uid="uid://dd5h3tv7qme4t" path="res://Assets/Flag6.png" id="6_hcftg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2afdd"]
+size = Vector2(12.4256, 25.9001)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tuyiv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qq3xm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_d2cfy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_p0ult")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4wq71")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_43571")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hcftg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="Flag" type="Area2D"]
+script = ExtResource("1_pykbo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7, 0.5)
+scale = Vector2(1.12671, 1.19691)
+shape = SubResource("RectangleShape2D_2afdd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 0)
+sprite_frames = SubResource("SpriteFrames_tuyiv")
+frame_progress = 0.962257
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

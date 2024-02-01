@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi3ncbtudov7c"]
+
+[ext_resource type="Script" path="res://fade_transition.gd" id="1_f12av"]
+
+[sub_resource type="Animation" id="Animation_jvjl6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_njntc"]
+resource_name = "fadetransition"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d1lqe"]
+_data = {
+"RESET": SubResource("Animation_jvjl6"),
+"fadetransition": SubResource("Animation_njntc")
+}
+
+[node name="FadeTransition" type="ColorRect"]
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_f12av")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_d1lqe")
+}

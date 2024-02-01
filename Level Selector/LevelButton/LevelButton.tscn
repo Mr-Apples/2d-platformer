@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4iqa4rahvkf0"]
+
+[ext_resource type="Script" path="res://Level Selector/LevelButton/LevelButton.gd" id="1_r7b05"]
+[ext_resource type="StyleBox" uid="uid://cvw8hpesyohwa" path="res://Assets/button.tres" id="1_ykeeu"]
+[ext_resource type="Texture2D" uid="uid://d0nm06b60flwr" path="res://Assets/lock.png" id="2_imm3b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g3cvb"]
+font_size = 60
+font_color = Color(0, 0, 0, 1)
+
+[node name="PanelContainer" type="PanelContainer"]
+custom_minimum_size = Vector2(157, 157)
+offset_right = 135.0
+offset_bottom = 135.0
+theme_override_styles/panel = ExtResource("1_ykeeu")
+script = ExtResource("1_r7b05")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_g3cvb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_imm3b")
+stretch_mode = 3
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

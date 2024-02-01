@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvlc1bhp2eoqy"]
+
+[ext_resource type="Script" path="res://Level Selector/LevelSelector.gd" id="1_xlcw5"]
+[ext_resource type="PackedScene" uid="uid://dbab3v0q0eaul" path="res://parallax_background.tscn" id="2_f1wyk"]
+[ext_resource type="PackedScene" uid="uid://bi3ncbtudov7c" path="res://fade_transition.tscn" id="2_vegea"]
+[ext_resource type="Script" path="res://Level Selector/BackButton.gd" id="3_1g5kl"]
+[ext_resource type="Texture2D" uid="uid://dkxhqb6qcaseh" path="res://Assets/cross.png" id="3_fwe2s"]
+
+[node name="Level Selector" type="MarginContainer"]
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_xlcw5")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_f1wyk")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ClipControl" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="LevelBox" type="GridContainer" parent="MarginContainer/HBoxContainer/ClipControl"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 55
+columns = 5
+
+[node name="BackButton" type="TextureButton" parent="MarginContainer/HBoxContainer/ClipControl"]
+layout_mode = 0
+offset_left = 965.0
+offset_top = 15.0
+offset_right = 1005.0
+offset_bottom = 55.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("3_fwe2s")
+texture_pressed = ExtResource("3_fwe2s")
+texture_hover = ExtResource("3_fwe2s")
+texture_disabled = ExtResource("3_fwe2s")
+texture_focused = ExtResource("3_fwe2s")
+stretch_mode = 0
+script = ExtResource("3_1g5kl")
+
+[node name="FadeTransition" parent="." instance=ExtResource("2_vegea")]
+visible = false
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ClipControl/BackButton" to="MarginContainer/HBoxContainer/ClipControl/BackButton" method="_on_pressed"]

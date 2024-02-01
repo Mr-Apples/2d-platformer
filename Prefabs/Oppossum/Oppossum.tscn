@@ -1,0 +1,111 @@
+[gd_scene load_steps=19 format=3 uid="uid://3k58x6m7m16y"]
+
+[ext_resource type="Script" path="res://Prefabs/Oppossum/Oppossum.gd" id="1_4htxv"]
+[ext_resource type="Texture2D" uid="uid://cp3opabuaa5y6" path="res://Assets/Sunny-land-assets-files/PNG/sprites/opossum/opossum-1.png" id="1_4sst5"]
+[ext_resource type="Texture2D" uid="uid://2wg522c3i6yd" path="res://Assets/Sunny-land-assets-files/PNG/sprites/enemy-death/enemy-death-1.png" id="2_0ipgf"]
+[ext_resource type="Texture2D" uid="uid://duftj0xbif6s" path="res://Assets/Sunny-land-assets-files/PNG/sprites/opossum/opossum-2.png" id="2_45whr"]
+[ext_resource type="Texture2D" uid="uid://dpcn7wfc83w1p" path="res://Assets/Sunny-land-assets-files/PNG/sprites/enemy-death/enemy-death-2.png" id="3_hfxak"]
+[ext_resource type="Texture2D" uid="uid://d0ojj515m0kt6" path="res://Assets/Sunny-land-assets-files/PNG/sprites/opossum/opossum-3.png" id="3_o82r2"]
+[ext_resource type="Texture2D" uid="uid://be06nix0176v6" path="res://Assets/Sunny-land-assets-files/PNG/sprites/enemy-death/enemy-death-3.png" id="4_4tpbf"]
+[ext_resource type="Texture2D" uid="uid://etnb0legtvoh" path="res://Assets/Sunny-land-assets-files/PNG/sprites/opossum/opossum-4.png" id="4_5najc"]
+[ext_resource type="Texture2D" uid="uid://fvm8el0lipis" path="res://Assets/Sunny-land-assets-files/PNG/sprites/enemy-death/enemy-death-4.png" id="5_dmd1d"]
+[ext_resource type="Texture2D" uid="uid://4knccthms22" path="res://Assets/Sunny-land-assets-files/PNG/sprites/opossum/opossum-5.png" id="5_kqfv4"]
+[ext_resource type="Texture2D" uid="uid://c6pxls2niycl3" path="res://Assets/Sunny-land-assets-files/PNG/sprites/enemy-death/enemy-death-5.png" id="6_40ojg"]
+[ext_resource type="Texture2D" uid="uid://ciw0jp48wft08" path="res://Assets/Sunny-land-assets-files/PNG/sprites/opossum/opossum-6.png" id="6_xdehj"]
+[ext_resource type="Texture2D" uid="uid://cgpg4r3poi5uo" path="res://Assets/Sunny-land-assets-files/PNG/sprites/enemy-death/enemy-death-6.png" id="7_x5etr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_looae"]
+height = 24.4004
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dxrkm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0ipgf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hfxak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4tpbf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dmd1d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_40ojg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_x5etr")
+}],
+"loop": false,
+"name": &"death",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4sst5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_45whr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_o82r2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5najc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kqfv4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xdehj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yxkpg"]
+size = Vector2(11, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_athgu"]
+size = Vector2(11, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_816nh"]
+size = Vector2(18, 3)
+
+[node name="Oppossum" type="CharacterBody2D" groups=["Enemies"]]
+script = ExtResource("1_4htxv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.19209e-07)
+scale = Vector2(0.975969, 0.819659)
+shape = SubResource("CapsuleShape2D_looae")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -3)
+scale = Vector2(1, 0.964286)
+sprite_frames = SubResource("SpriteFrames_dxrkm")
+
+[node name="RightDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightDetector"]
+position = Vector2(-10, 0)
+shape = SubResource("RectangleShape2D_yxkpg")
+
+[node name="LeftDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftDetector"]
+position = Vector2(11, 0)
+shape = SubResource("RectangleShape2D_athgu")
+
+[node name="DeathDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathDetector"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_816nh")
+
+[connection signal="body_entered" from="RightDetector" to="." method="_on_right_detector_body_entered"]
+[connection signal="body_entered" from="LeftDetector" to="." method="_on_left_detector_body_entered"]
+[connection signal="body_entered" from="DeathDetector" to="." method="_on_death_detector_body_entered"]
